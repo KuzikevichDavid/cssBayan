@@ -1,8 +1,9 @@
+<!DOCTYPE html>
 <html>
 
 <head>
+  <meta charset="utf-8">
   <title>cssBayan</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <style>
     .hide {
       display: none;
@@ -11,35 +12,52 @@
     .base {
       color: rgb(41, 26, 206);
       cursor: pointer;
+      background: #c2a058;
     }
 
     .base:hover {
       color: #141415;
     }
 
+    .isHover:active {
+      color: rgb(41, 26, 206);
+    }
+
     .base label {
-      padding: 8px 8px;
+      padding: 10px 10px;
       text-align: left;
+      font-weight: bold;
       display: block;
-      background: #c2a058;
-      margin: 5px 0px 1px 0px;
-      /* transition: ease .5s; */
+      margin: 1px 0px 0px 0px;
+      cursor: inherit;
     }
 
     .content {
       align-items: center;
-      float: none;
       margin: 1 0 0 0;
-      padding: 10px 10px;
+      padding: 0px 10px;
     }
 
-    .base input:checked+label+.content {
+    .isHover label:hover+.content {
       display: block;
-      animation: slidein 0.5s forwards;
+      transition: all 0.5s;
+      animation: slidein 0.5s ease-in-out;
+    }
+
+    .isHover .content:hover{
+      display: block;
+      transition: all 5s;
+    }
+
+    .isHover input:checked+label+.content {
+      display: block;
+      transition: all 0.5s;
+      animation: slidein 0.5s ease-in-out;
     }
 
     .fit-picture {
       width: 250px;
+      height: 250px;
     }
 
     @keyframes slidein {
@@ -63,27 +81,36 @@
 
 <body>
   <div id="mems" class="base">
-    <input type="checkbox" id="choice" class="hide" />
-    <label for="choice">
-      <text>The choise</text>
-    </label>
-    <div class="content hide">
-      <img class="fit-picture" src="./images/me_or_bike.jpg" />
+    <div class="isHover">
+      <input type="radio" id="choice" class="hide" name="memes" checked/>
+      <label for="choice">
+        <text>The choise</text>
+      </label>
+      <div class="content hide">
+        <img class="fit-picture" src="./images/me_or_bike.jpg" alt="me_or_bike"/>
+      </div>
     </div>
-    <input type="checkbox" id="guy" class="hide" />
-    <label for="guy">That guy</label>
-    <div class="content hide">
-      <img class="fit-picture" src="./images/one_friend.jpg" />
+    <div class="isHover">
+      <input type="radio" id="guy" class="hide" name="memes">
+      <label for="guy">That guy</label>
+      <div class="content hide">
+        <img class="fit-picture" src="./images/one_friend.jpg" />
+      </div>
+      </input>
     </div>
-    <input type="checkbox" id="stress" class="hide" />
-    <label for="stress">Stress managment</label>
-    <div class="content hide">
-      <img class="fit-picture" src="./images/stress.jpg" />
+    <div class="isHover">
+      <input type="radio" id="stress" class="hide" name="memes" />
+      <label for="stress">Stress managment</label>
+      <div class="content hide">
+        <img class="fit-picture" src="./images/stress.jpg" />
+      </div>
     </div>
-    <input type="checkbox" id="winner" class="hide" />
-    <label for="winner">The winner is...</label>
-    <div class="content hide">
-      <img class="fit-picture" src="./images/winner.jpg" />
+    <div class="isHover">
+      <input type="radio" id="winner" class="hide" name="memes" />
+      <label for="winner">The winner is...</label>
+      <div class="content hide">
+        <img class="fit-picture" src="./images/winner.jpg" />
+      </div>
     </div>
   </div>
 </body>

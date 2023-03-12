@@ -1,0 +1,155 @@
+:root {
+  --bg-color: #d1c4a8;
+  --border-color: #141415;
+  --text-color: #141415;
+  --text-active-color: rgb(41, 26, 206);
+}
+
+.hide {
+  display: none;
+}
+
+.hide-icon {
+  display: none;
+}
+
+h2 {
+  color: var(--text-color);
+}
+
+.base {
+  color: rgb(41, 26, 206);
+  cursor: pointer;
+  background: var(--bg-color);
+  border-top: 0.1rem solid var(--border-color);
+}
+
+/* цвет текста выбранного мема */
+input:checked+label{
+  color: var(--text-color);
+}
+
+.meme {
+  border-bottom: 0.1rem solid var(--border-color);
+}
+
+/* цвет текста на событие нажатия */
+.meme:active {
+  color: var(--text-active-color);
+}
+
+.base label {
+  padding: 0.5% 1%;
+  text-align: left;
+  font-weight: bold;
+  display: block;
+  cursor: inherit;
+}
+
+.content {
+  margin: 0 auto;
+  padding: 0 0.1%;
+  width: max-content;
+}
+
+.fit-picture {
+  width: max-content;
+  animation: increase 1s ease-in;
+}
+
+.meme-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@keyframes increase {
+  0% {
+    opacity: 0;
+    max-width: 0rem;
+    max-height: 0rem;
+    display: block;
+  }
+
+  100% {
+    opacity: 1;
+    max-width: 50rem;
+    max-height: 50rem;
+    display: block;
+  }
+}
+
+@media screen and (min-width: 822px ) {
+  /* анимация раскрытия иконки списка */
+  .meme input:hover+label img:not(.fit-picture),
+  .meme input:checked+label img:not(.fit-picture){
+    transform: rotate(45deg);
+    transition: transform 0.5s ease;
+  }
+
+  /* наведение мыши на не выбранный мем */
+  .meme:hover .content {
+    display: block;
+  }
+
+  /* цвет текста на событие наведения мыши на мемы */
+  .base:hover {
+    color: var(--text-color);
+  }
+
+  /* не прячет мем при проведении курсора  */
+  .content:hover{
+    display: block;
+  }
+
+  .base:hover img:not(.fit-picture){
+    display: block;
+  }
+
+  /* отображение выбранного мема */
+  .meme input:checked+label .content {
+    display: block;
+    color: var(--text-color);
+  }
+
+  h2, p{
+    font-size: 1.3rem;
+  }
+}
+
+@media screen and (max-width: 821px ) {
+  /* анимация раскрытия иконки списка */
+  .meme input:checked+label img:not(.fit-picture) {
+    transform: rotate(45deg);
+    transition: transform 0.5s ease;
+  }
+
+  img:not(.fit-picture){
+    display: block;
+  }
+
+  /* отображение выбранного мема */
+  .meme input:checked+label .content {
+    display: flex;
+    color: var(--text-color);
+    animation: increase 1s ease;
+  }
+
+  h2, p{
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .content {
+    width: 50vw;
+  }
+
+  .fit-picture {
+    width: 50vw;
+  }
+
+  h2, p{
+    font-size: 0.5rem;
+  }
+}

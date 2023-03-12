@@ -9,108 +9,188 @@
       display: none;
     }
 
+    h2 {
+      color: #141415;
+    }
+
     .base {
       color: rgb(41, 26, 206);
       cursor: pointer;
       background: #c2a058;
+      border-top: 0.1rem solid #141415;
     }
 
+    /* цвет текста на событие наведения мыши */
     .base:hover {
       color: #141415;
     }
 
-    .isHover:active {
+    /* цвет текста выбранного мема */
+    input:checked+label{
+      color: #141415;
+    }
+
+    .meme {
+      border-bottom: 0.1rem solid #141415;
+    }
+
+    /* цвет текста на событие нажатия */
+    .meme:active {
       color: rgb(41, 26, 206);
     }
 
     .base label {
-      padding: 10px 10px;
+      padding: 0.5% 1%;
       text-align: left;
       font-weight: bold;
       display: block;
-      margin: 1px 0px 0px 0px;
       cursor: inherit;
     }
 
     .content {
-      align-items: center;
-      margin: 1 0 0 0;
-      padding: 0px 10px;
-    }
-
-    .isHover label:hover+.content {
-      display: block;
-      transition: all 0.5s;
-      animation: slidein 0.5s ease-in-out;
-    }
-
-    .isHover .content:hover{
-      display: block;
-      transition: all 5s;
-    }
-
-    .isHover input:checked+label+.content {
-      display: block;
-      transition: all 0.5s;
-      animation: slidein 0.5s ease-in-out;
+      margin: 0 auto;
+      padding: 0 0.1%;
+      width: max-content;
     }
 
     .fit-picture {
-      width: 250px;
-      height: 250px;
+      width: max-content;
+      height: max-content;
+      animation: increase 1s ease-in-out;
     }
 
-    @keyframes slidein {
+    .meme-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    @keyframes increase {
       0% {
         opacity: 0;
-        display: none;
-      }
-
-      60% {
-        opacity: 0;
+        max-width: 0rem;
+        max-height: 0rem;
         display: block;
       }
 
       100% {
         opacity: 1;
+        max-width: 50rem;
+        max-height: 50rem;
         display: block;
+      }
+    }
+
+    @media screen and (min-width: 822px ) {
+      /* анимация раскрытия списка */
+      .meme input:hover+label img:not(.fit-picture),
+      .meme input:checked+label img:not(.fit-picture){
+        transform: rotate(45deg);
+        transition: transform 0.5s ease-in;
+      }
+
+      /* наведение мыши на не выбранный мем */
+      .meme:hover .content {
+        display: block;
+      }
+
+      /* не прячет мем при проведении курсора  */
+      .content:hover{
+        display: block;
+      }
+
+      .base:hover img:not(.fit-picture){
+        display: block;
+      }
+
+      /* отображение выбранного мема */
+      .meme input:checked+label .content {
+        display: block;
+        color: #141415;
+      }
+
+      h2, p{
+        font-size: 1.3rem;
+      }
+    }
+
+    @media screen and (max-width: 821px ) {
+      /* анимация раскрытия списка */
+      .meme input:checked+label img:not(.fit-picture) {
+        transform: rotate(45deg);
+        transition: transform 0.5s ease-in;
+      }
+
+      /* отображение выбранного мема */
+      .meme input:checked+label .content {
+        display: block;
+        color: #141415;
+        animation: increase 1s ease-in-out;
+      }
+
+      h2, p{
+        font-size: 0.9rem;
+      }
+    }
+
+    @media screen and (max-width: 420px) {
+      h2, p{
+        font-size: 0.5rem;
       }
     }
   </style>
 </head>
 
 <body>
-  <div id="mems" class="base">
-    <div class="isHover">
-      <input type="radio" id="choice" class="hide" name="memes" checked/>
+  <h2>CSS Bayan</h3>
+  <div class="base">
+    <div class="meme">
+      <input type="radio" id="choice" class="hide" name="memes" checked>
       <label for="choice">
-        <text>The choise</text>
+        <div class="meme-title">
+          <p>The choise</p>
+          <img class="hide" src="./icons/monkey.png" alt="monkey">
+        </div>
+        <div class="content hide">
+          <img class="fit-picture" src="./images/me_or_bike.jpg" alt="me_or_bike">
+        </div>
       </label>
-      <div class="content hide">
-        <img class="fit-picture" src="./images/me_or_bike.jpg" alt="me_or_bike"/>
-      </div>
     </div>
-    <div class="isHover">
+    <div class="meme">
       <input type="radio" id="guy" class="hide" name="memes">
-      <label for="guy">That guy</label>
-      <div class="content hide">
-        <img class="fit-picture" src="./images/one_friend.jpg" />
-      </div>
-      </input>
+      <label for="guy">
+        <div class="meme-title">
+          <p>That guy</p>
+          <img class="hide" src="./icons/monkey.png" alt="monkey">
+        </div>
+        <div class="content hide">
+          <img class="fit-picture" src="./images/one_friend.jpg" alt="guy">
+        </div>
+      </label>
     </div>
-    <div class="isHover">
-      <input type="radio" id="stress" class="hide" name="memes" />
-      <label for="stress">Stress managment</label>
-      <div class="content hide">
-        <img class="fit-picture" src="./images/stress.jpg" />
-      </div>
+    <div class="meme">
+      <input type="radio" id="stress" class="hide" name="memes">
+      <label for="stress">
+        <div class="meme-title">
+          <p>Stress managment</p>
+          <img class="hide" src="./icons/monkey.png" alt="monkey">
+        </div>
+        <div class="content hide">
+          <img class="fit-picture" src="./images/stress.jpg" alt="stress">
+        </div>
+      </label>
     </div>
-    <div class="isHover">
-      <input type="radio" id="winner" class="hide" name="memes" />
-      <label for="winner">The winner is...</label>
-      <div class="content hide">
-        <img class="fit-picture" src="./images/winner.jpg" />
-      </div>
+    <div class="meme">
+      <input type="radio" id="winner" class="hide" name="memes">
+      <label for="winner">
+        <div class="meme-title">
+          <p>The winner is...</p>
+          <img class="hide" src="./icons/monkey.png" alt="monkey">
+        </div>
+        <div class="content hide">
+          <img class="fit-picture" src="./images/winner.jpg" alt="winner">
+        </div>
+      </label>
     </div>
   </div>
 </body>

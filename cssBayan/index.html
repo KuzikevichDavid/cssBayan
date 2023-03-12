@@ -57,14 +57,12 @@
     .content {
       margin: 0 auto;
       padding: 0 0.1%;
-      width: 100%;
+      width: max-content;
     }
 
     .fit-picture {
-      display: flex;
-      width: 100%;
-      object-fit: contain;
-      animation: increase 1s ease-in-out;
+      width: max-content;
+      animation: increase 1s ease-in;
     }
 
     .meme-title {
@@ -94,7 +92,7 @@
       .meme input:hover+label img:not(.fit-picture),
       .meme input:checked+label img:not(.fit-picture){
         transform: rotate(45deg);
-        transition: transform 0.5s ease-in;
+        transition: transform 0.5s ease;
       }
 
       /* наведение мыши на не выбранный мем */
@@ -131,7 +129,7 @@
       /* анимация раскрытия иконки списка */
       .meme input:checked+label img:not(.fit-picture) {
         transform: rotate(45deg);
-        transition: transform 0.5s ease-in;
+        transition: transform 0.5s ease;
       }
 
       img:not(.fit-picture){
@@ -142,7 +140,7 @@
       .meme input:checked+label .content {
         display: flex;
         color: var(--text-color);
-        animation: increase 1s ease-in-out;
+        animation: increase 1s ease;
       }
 
       h2, p{
@@ -151,6 +149,14 @@
     }
 
     @media screen and (max-width: 420px) {
+      .content {
+        width: 50vw;
+      }
+
+      .fit-picture {
+        width: 50vw;
+      }
+
       h2, p{
         font-size: 0.5rem;
       }
